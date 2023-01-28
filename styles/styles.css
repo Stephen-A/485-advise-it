@@ -1,0 +1,23 @@
+th {
+    width: 30%;
+}
+
+table {
+    width: 35%;
+}
+
+.fixed-bottom {
+    bottom: 0;
+    right: 0;
+    z-index: 1030;
+}
+
+#printBtn {
+    float: right;
+    background-color: transparent;
+    border: none;
+}
+
+#printBtn:hover { /* Increase image size when hovering over it */
+    margin: 2px 2px 2px 2px;
+}
