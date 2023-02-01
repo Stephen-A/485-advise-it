@@ -31,9 +31,17 @@ $f3->route('GET|POST /new-plan', function($f3) {
     $GLOBALS['con']->createNewStudentPlan($f3->get('PARAMS.student_token'));
 });
 
+$f3->route('GET /print-student-plan/@student_token', function($f3) {
+    $GLOBALS['con']->printStudentPlan($f3->get('PARAMS.student_token'));
+});
+
 // Define view student plan route with student token as part of the url
 $f3->route('GET|POST /view-plan/@student_token', function($f3) {
     $GLOBALS['con']->viewStudentPlan($f3->get('PARAMS.student_token'));
+});
+
+$f3->route('GET /', function() {
+    $GLOBALS['con']->home();
 });
 
 // Run fat-free

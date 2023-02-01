@@ -27,6 +27,32 @@ class Controller
         echo $view->render('views/home.php');
     }
 
+
+    function printStudentPlan($student_token)
+    {
+        $currentPlan = getStudentPlan($student_token);
+        $dateTimeSaved = gmdate('Y-m-d h:i:s');
+        $advisor = $currentPlan['advisor'];
+        $fallClasses = $currentPlan['fall_classes'];
+        $winterClasses = $currentPlan['winter_classes'];
+        $springClasses = $currentPlan['spring_classes'];
+        $summerClasses = $currentPlan['summer_classes'];
+
+        // Pass data through F3 and display data on current page
+        $this->_f3->set('student_token', $student_token);
+        $this->_f3->set('dateTimeSaved', $dateTimeSaved);
+        $this->_f3->set('advisor', $advisor);
+        $this->_f3->set('fallClasses', $fallClasses);
+        $this->_f3->set('winterClasses', $winterClasses);
+        $this->_f3->set('springClasses', $springClasses);
+        $this->_f3->set('summerClasses', $summerClasses);
+
+
+        $view = new Template();
+        echo $view->render('views/print-student-plan.php');
+    }
+
+
     /**
      * Display (empty) new plan
      */
@@ -44,7 +70,6 @@ class Controller
         }
 
         $this->_f3->set('student_token', $student_token);
-
         $this->_f3->set('isFormSubmitted', false);
         $this->_f3->set('isSaveSuccess', false);
 
@@ -97,7 +122,7 @@ class Controller
             $dateTimeSaved = gmdate('Y-m-d h:i:s');
             $advisor = $currentPlan['advisor'];
             $fallClasses = $currentPlan['fall_classes'];
-            $winterClasses = $currentPlan['winter_lasses'];
+            $winterClasses = $currentPlan['winter_classes'];
             $springClasses = $currentPlan['spring_classes'];
             $summerClasses = $currentPlan['summer_classes'];
         }

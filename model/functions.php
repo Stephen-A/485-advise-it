@@ -14,7 +14,20 @@ function validateToken(String $student_token): bool
     return true;
 }
 
-function getStudentPlan(string $student_token) {
+function printStudentPlan(String $student_token)
+{
+    global $dbh;
+
+    $sql = "SELECT * FROM advise_it_plans WHERE student_token = :student_token";
+    $sql = $dbh->prepare($sql);
+    $sql->bindParam(':student_token', $student_token, PDO::PARAM_STR);
+    $sql->execute();
+
+    return $sql->fetch(PDO::FETCH_ASSOC);
+}
+
+function getStudentPlan(string $student_token)
+{
     // Access PDO from globals
     global $dbh;
 

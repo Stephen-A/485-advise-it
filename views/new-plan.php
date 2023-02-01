@@ -14,23 +14,22 @@
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
         <!-- Styles -->
         <link rel="stylesheet" href="/485-advise-it/styles/styles.css">
     </head>
 <body>
-<div class="container">
+<div class="container" id="printStudentPlan">
     <div class="row pt-3">
         <div class="col">
             <!-- Return home button -->
-            <a class="btn btn-primary mt-2 mb-2" href="/advise-it" role="button">Return</a>
+            <a class="btn btn-primary mt-2 mb-2" href="/485-advise-it" role="button">Return</a>
             <!-- Display Student Token -->
             <h4 class="text-center">Student Token: {{ @student_token }}</h4>
         </div>
     </div>
 
     <!-- Form data to submit to -->
-    <form action="/advise-it/view-plan/{{ @student_token }}" method="post">
+    <form action="/485-advise-it/view-plan/{{ @student_token }}" method="post">
         <!-- Hidden input for student token to be used on form submit -->
         <input type="hidden" name="student_token" id="student_token" value="{{ @student_token }}">
         <div class="row pb-4">
@@ -154,7 +153,7 @@
     </form> <!-- </form> -->
 
     <div class="fixed-bottom m-4">
-        <a href="" id="printBtn" onclick="print()" target="_blank">
+        <a href="/485-advise-it/print-student-plan/{{ @student_token }}" id="printBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
                 <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
                 <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
@@ -206,10 +205,12 @@
 </div> <!--Container -->
 
     <!-- JavaScript -->
+    <script src="../scripts/printStudentPlan.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-    <!-- Check if the form is submitted successfully. If true, then toggle popup on window load -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>    <!-- Check if the form is submitted successfully. If true, then toggle popup on window load -->
+
     <check if="{{ @isFormSubmitted }}">
         <script src="../scripts/scripts.js"></script>;
     </check>
